@@ -6,6 +6,7 @@
 //
 //
 
+#if os(OSX)
 import CleanroomLogger
 
 class ASLFormatter : ReadableLogFormatter {
@@ -31,3 +32,4 @@ extension ASLLogRecorder {
         )
     }
 }
+#endif

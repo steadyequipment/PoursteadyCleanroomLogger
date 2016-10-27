@@ -6,6 +6,7 @@
 //
 //
 
+#if os(OSX)
 import SystemConfiguration
 
 func isDebuggerAttached() -> Bool {
@@ -17,3 +18,4 @@ func isDebuggerAttached() -> Bool {
     assert(junk == 0, "sysctl failed")
     return (info.kp_proc.p_flag & P_TRACED) != 0
 }
+#endif

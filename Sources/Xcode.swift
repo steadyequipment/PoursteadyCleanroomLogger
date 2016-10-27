@@ -6,6 +6,7 @@
 //
 //
 
+#if os(OSX)
 import CleanroomLogger
 
 extension XcodeLogFormatter {
@@ -36,3 +37,4 @@ extension XcodeLogConfiguration {
         )
     }
 }
+#endif

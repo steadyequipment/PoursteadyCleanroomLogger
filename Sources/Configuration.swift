@@ -21,6 +21,7 @@ public class Configuration : BasicLogConfiguration {
     init(minimumSeverity: LogSeverity, outputFolder: String? = nil) throws {
 
         var configurations = [LogConfiguration]()
+        #if os(OSX)
         if isDebuggerAttached() {
             let configuration = XcodeLogConfiguration(minimumSeverity: minimumSeverity)
 
@@ -33,7 +34,13 @@ public class Configuration : BasicLogConfiguration {
 
             configurations.append(configuration)
         }
+        #else
+            let configuration = BasicLogConfiguration(
+                minimumSeverity: minimumSeverity,
+                recorders: [StandardOutputLogRecorder()])
 
+            configurations.append(configuration)
+        #endif
         if let outputFolder = outputFolder,
             outputFolder != Configuration.disabledOutputFolderValue {
 
